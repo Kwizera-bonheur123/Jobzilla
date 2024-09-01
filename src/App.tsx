@@ -1,12 +1,11 @@
-import './App.css'
+import Routers from "./routes";
 
 function App() {
-
   return (
-    <> 
-    <h1>Jobzilla</h1>
+    <>
+      <Routers />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
