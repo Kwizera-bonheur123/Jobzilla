@@ -47,8 +47,10 @@ const Nav = () => {
       transition={{ ease: "easeOut", duration: 1 }}
       ref={navbarRef}
       className={`${
-        isSticky ? "bg-white p-4 rounded-xl top-0" : "bg-transparent top-4"
-      }  text-white items-center w-[94%] sm:w-[78%] fixed flex justify-between sm:gap-[5%] text-center mx-[3%] sm:mx-[11%]`}
+        isSticky
+          ? "bg-white px-5 py-6 rounded-xl top-0"
+          : "bg-transparent top-4"
+      } z-50  text-white items-center w-full md:w-[78%] fixed flex justify-between sm:gap-[5%] text-center mx-[0%] md:mx-[11%]`}
     >
       <img src={isSticky ? DarkLogo : Logo} className=" h-9 sm:h-14" />
       {shouldShowMenu && (
@@ -57,7 +59,7 @@ const Nav = () => {
           animate={{ x: "0%" }}
           transition={{ ease: "easeOut", duration: 1 }}
           className={` ${
-            isSticky ? "sm:text-slate-900 p-4" : "sm:text-white"
+            isSticky ? "sm:text-gray-900 p-4" : "sm:text-white"
           } text-center bg-white sm:bg-transparent h-screen sm:h-auto top-0 text-slate-950 sm:text-white text-md font-sans absolute sm:relative flex flex-col gap-4 sm:flex-row sm:justify-between items-start sm:items-center pl-4 pt-3 w-[60%] sm:w-[40%]`}
         >
           {links.map((link) => (
