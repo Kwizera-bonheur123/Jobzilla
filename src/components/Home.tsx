@@ -6,6 +6,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import { GoPeople } from "react-icons/go";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import IG from "../assets/ig-removebg-preview.png";
+import { PiCheckCircleFill } from "react-icons/pi";
+import Icon1 from "../assets/icon1.png";
 
 const Home = () => {
   const responsive = {
@@ -25,7 +28,27 @@ const Home = () => {
       slidesToSlide: 1,
     },
   };
+  const jobResponsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1,
+    },
+  };
   const [openModel, setOpenModel] = useState<boolean>(false);
+  const [activeLink, setActiveLink] = useState("All");
+
+  const links = ["All", "Full-time", "Part time", "Monthly"];
   return (
     <div className=" bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen">
       <div className="mx-[3%] sm:mx-[8%] md:mx-[10%] pt-[38%] sm:pt-[28%] md:pt-[17%] h-[40%]">
@@ -146,6 +169,211 @@ const Home = () => {
             <h3 className=" font-semibold text-md">Human resaurces</h3>
           </div>
         </Carousel>
+      </div>
+      <div className="bg-white py-8 px-3 h-[650px]">
+        <h1 className=" font-semibold text-[22px] font-sans">
+          Recommended Jobs
+        </h1>
+        <div className=" bg-blue-100 pt-8 mt-6 rounded-[35px] px-3 sm:px-10 lg:px-[9%] h-[350px]">
+          <ul className="text-blue-700 font-semibold flex justify-between mx-10 sm:mx-32 lg:mx-96 border-b-2 border-gray-300 pb-4 relative">
+            {links.map((link) => (
+              <li
+                key={link}
+                className="relative cursor-pointer"
+                onClick={() => setActiveLink(link)}
+              >
+                <span
+                  className={`${
+                    activeLink === link ? "text-black" : "text-blue-700"
+                  } pb-2 text-sm`}
+                >
+                  {link}
+                </span>
+                {activeLink === link && (
+                  <span className="absolute left-0 bottom-[-17px] w-full h-[2px] bg-blue-700 z-30" />
+                )}
+              </li>
+            ))}
+          </ul>
+          <div className=" mt-8">
+            <Carousel responsive={jobResponsive} arrows={true}>
+              <div className=" bg-white border-2 sm:border-0 border-gray-300 rounded-xl px-4 pt-5 sm:mx-4">
+                <div className=" bg-gray-200 rounded-xl px-4 py-5 mb-4">
+                  <div className=" flex justify-between w-full">
+                    <h3 className="text-blue-600">Full Time</h3>
+                    <h3>1 day ago</h3>
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <div className="flex justify-center">
+                      <img src={IG} className=" w-24 h-24" />
+                    </div>
+                    <p className=" text-center font-bold">Instagram</p>
+                    <p className=" text-center font-thin text-sm">
+                      Washington U.S.A
+                    </p>
+                  </div>
+                </div>
+                <p className=" text-black text-center font-bold text-xl">
+                  Backend Developer
+                </p>
+                <div className=" flex justify-center pb-8 pt-5">
+                  <p className=" text-blue-800 text-xl font-extrabold">$130</p>
+                  <p className=" mt-1">/ Month</p>
+                </div>
+                <div className=" flex justify-center -mb-8 text-blue-700 p-1 ">
+                  <PiCheckCircleFill size="60px" />
+                </div>
+              </div>
+              <div className=" bg-white border-2 sm:border-0 border-gray-300 rounded-xl px-4 pt-5 sm:mx-4">
+                <div className=" bg-gray-200 rounded-xl px-4 py-5 mb-4">
+                  <div className=" flex justify-between w-full">
+                    <h3 className="text-blue-600">Full Time</h3>
+                    <h3>1 day ago</h3>
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <div className="flex justify-center">
+                      <img src={IG} className=" w-24 h-24" />
+                    </div>
+                    <p className=" text-center font-bold">Instagram</p>
+                    <p className=" text-center font-thin text-sm">
+                      Washington U.S.A
+                    </p>
+                  </div>
+                </div>
+                <p className=" text-black text-center font-bold text-xl">
+                  Backend Developer
+                </p>
+                <div className=" flex justify-center pb-8 pt-5">
+                  <p className=" text-blue-800 text-xl font-extrabold">$130</p>
+                  <p className=" mt-1">/ Month</p>
+                </div>
+                <div className=" flex justify-center -mb-8 text-blue-700 p-1 ">
+                  <PiCheckCircleFill size="60px" />
+                </div>
+              </div>
+              <div className=" bg-white border-2 sm:border-0 border-gray-300 rounded-xl px-4 pt-5 sm:mx-4">
+                <div className=" bg-gray-200 rounded-xl px-4 py-5 mb-4">
+                  <div className=" flex justify-between w-full">
+                    <h3 className="text-blue-600">Full Time</h3>
+                    <h3>1 day ago</h3>
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <div className="flex justify-center">
+                      <img src={IG} className=" w-24 h-24" />
+                    </div>
+                    <p className=" text-center font-bold">Instagram</p>
+                    <p className=" text-center font-thin text-sm">
+                      Washington U.S.A
+                    </p>
+                  </div>
+                </div>
+                <p className=" text-black text-center font-bold text-xl">
+                  Backend Developer
+                </p>
+                <div className=" flex justify-center pb-8 pt-5">
+                  <p className=" text-blue-800 text-xl font-extrabold">$130</p>
+                  <p className=" mt-1">/ Month</p>
+                </div>
+                <div className=" flex justify-center -mb-8 text-blue-700 p-1 ">
+                  <PiCheckCircleFill size="60px" />
+                </div>
+              </div>
+              <div className="pb-6">
+                <div className=" bg-white border-2 sm:border-0 border-gray-300 rounded-xl px-4 pt-5 sm:mx-4">
+                  <div className=" bg-gray-200 rounded-xl px-4 py-5 mb-4">
+                    <div className=" flex justify-between w-full">
+                      <h3 className="text-blue-600">Full Time</h3>
+                      <h3>1 day ago</h3>
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <div className="flex justify-center">
+                        <img src={IG} className=" w-24 h-24" />
+                      </div>
+                      <p className=" text-center font-bold">Instagram</p>
+                      <p className=" text-center font-thin text-sm">
+                        Washington U.S.A
+                      </p>
+                    </div>
+                  </div>
+                  <p className=" text-black text-center font-bold text-xl">
+                    Backend Developer
+                  </p>
+                  <div className=" flex justify-center pb-8 pt-5">
+                    <p className=" text-blue-800 text-xl font-extrabold">
+                      $130
+                    </p>
+                    <p className=" mt-1">/ Month</p>
+                  </div>
+                  <div className=" flex justify-center -mb-8 p-1 text-blue-600">
+                    <PiCheckCircleFill size="60px" />
+                  </div>
+                </div>
+              </div>
+            </Carousel>
+          </div>
+        </div>
+      </div>
+      <div className=" py-28 px-2 bg-cardBackgroundImage">
+        <h2 className=" text-white text-center font-semibold">
+          Working progress
+        </h2>
+        <div className=" flex justify-center">
+          <h1 className=" text-white text-center text-xl lg:text-5xl font-bold tracking-wide py-3 lg:w-[45%]">
+            Follow Our Steps, We Will Help You
+          </h1>
+        </div>
+        <div className=" flex flex-wrap justify-center gap-5 lg:mt-16 md:mx-[3%]">
+          <div className=" rounded-xl shadow-custom bg-[#002860] p-7 sm:w-[42%] lg:w-[27%]">
+            <div className=" flex justify-between">
+              <img src={Icon1} className=" w-14 h-16" />
+              <span className="text-[#002860] custom-stroke text-7xl font-extrabold">
+                01
+              </span>
+            </div>
+            <h1 className=" text-white font-semibold text-lg sm:text-md tracking-wide mt-5 mb-2">
+              Register Your Account
+            </h1>
+            <p className=" text-sm text-white mb-5">
+              You need to create an account to find the best and preferred job.
+            </p>
+          </div>
+          <div className=" rounded-xl shadow-custom bg-[#002860] p-7 sm:w-[42%] lg:w-[27%]">
+            <div className=" flex justify-between">
+              <img src={Icon1} className=" w-14 h-16" />
+              <span className="text-[#002860] custom-stroke text-7xl font-extrabold">
+                01
+              </span>
+            </div>
+            <h1 className=" text-white font-semibold text-lg tracking-wide mt-5 mb-2">
+              Register Your Account
+            </h1>
+            <p className=" text-sm text-white mb-5">
+              You need to create an account to find the best and preferred job.
+            </p>
+          </div>
+          <div className=" rounded-xl shadow-custom bg-[#002860] p-7 sm:w-[42%] lg:w-[27%]">
+            <div className=" flex justify-between">
+              <img src={Icon1} className=" w-14 h-16" />
+              <span className="text-[#002860] custom-stroke text-7xl font-extrabold">
+                01
+              </span>
+            </div>
+            <h1 className=" text-white font-semibold text-lg tracking-wide mt-5 mb-2">
+              Register Your Account
+            </h1>
+            <p className=" text-sm text-white mb-5">
+              You need to create an account to find the best and preferred job.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className=" bg-white pt-16">
+        <p className=" text-center text-blue-800 font-bold text-xl py-4">
+          Candidates
+        </p>
+        <h1 className=" text-center text-5xl text-gray-950 font-bold">
+          Featured Candidates
+        </h1>
       </div>
     </div>
   );
