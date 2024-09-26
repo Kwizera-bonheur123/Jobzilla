@@ -9,6 +9,12 @@ import "react-multi-carousel/lib/styles.css";
 import IG from "../assets/ig-removebg-preview.png";
 import { PiCheckCircleFill } from "react-icons/pi";
 import Icon1 from "../assets/icon1.png";
+import Candidate from "./Candidate";
+import w1 from "../assets/w1.png";
+import w2 from "../assets/w2.png";
+import w5 from "../assets/w5.png";
+import w6 from "../assets/w6.png";
+import SignupCard from "./SignupCard";
 
 const Home = () => {
   const responsive = {
@@ -45,12 +51,30 @@ const Home = () => {
       slidesToSlide: 1,
     },
   };
+  const companyResponsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+      slidesToSlide: 5,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4,
+      slidesToSlide: 4,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+      slidesToSlide: 2,
+    },
+  };
   const [openModel, setOpenModel] = useState<boolean>(false);
   const [activeLink, setActiveLink] = useState("All");
 
   const links = ["All", "Full-time", "Part time", "Monthly"];
   return (
     <div className=" bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen">
+      <SignupCard />
       <div className="mx-[3%] sm:mx-[8%] md:mx-[10%] pt-[38%] sm:pt-[28%] md:pt-[17%] h-[40%]">
         <h1 className=" text-white text-4xl md:text-6xl font-bold">
           FIND TOP IT JOBS
@@ -341,11 +365,11 @@ const Home = () => {
             <div className=" flex justify-between">
               <img src={Icon1} className=" w-14 h-16" />
               <span className="text-[#002860] custom-stroke text-7xl font-extrabold">
-                01
+                02
               </span>
             </div>
             <h1 className=" text-white font-semibold text-lg tracking-wide mt-5 mb-2">
-              Register Your Account
+              Apply For Dream Job
             </h1>
             <p className=" text-sm text-white mb-5">
               You need to create an account to find the best and preferred job.
@@ -355,11 +379,11 @@ const Home = () => {
             <div className=" flex justify-between">
               <img src={Icon1} className=" w-14 h-16" />
               <span className="text-[#002860] custom-stroke text-7xl font-extrabold">
-                01
+                03
               </span>
             </div>
             <h1 className=" text-white font-semibold text-lg tracking-wide mt-5 mb-2">
-              Register Your Account
+              Upload Your Resume
             </h1>
             <p className=" text-sm text-white mb-5">
               You need to create an account to find the best and preferred job.
@@ -367,13 +391,69 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className=" bg-white pt-16">
-        <p className=" text-center text-blue-800 font-bold text-xl py-4">
-          Candidates
-        </p>
-        <h1 className=" text-center text-5xl text-gray-950 font-bold">
-          Featured Candidates
-        </h1>
+      <Candidate />
+      <div className=" bg-white h-[670px] sm:h-[500px]">
+        <div className=" bg-[#002760] h-[320px] w-full text-white pt-10 px-3 sm:px-20">
+          <h3 className=" text-center font-bold text-lg">Top Companies</h3>
+          <h2 className=" text-center font-bold text-2xl tracking-wide">
+            Get hired in top campanies
+          </h2>
+          <div className=" bg-[#e9f1fb] pb-10 pt-16 lg:pt-16 mt-14 rounded-5xl">
+            <div className=" px-6">
+              <Carousel
+                autoPlay={true}
+                responsive={companyResponsive}
+                infinite={true}
+                autoPlaySpeed={2000}
+                arrows={false}
+                showDots={false}
+                className=""
+              >
+                <img src={w1} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w2} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w5} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w6} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w1} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w2} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w5} className=" h-6 sm:h-5 lg:h-6" />
+                <img src={w6} className=" h-6 sm:h-5 lg:h-6" />
+              </Carousel>
+            </div>
+            <p className=" h-[1px] bg-gray-300 w-full mt-16 font-extrabold z-40" />
+            <div className=" grid grid-cols-1 sm:grid-cols-3 my-6 gap-8 px-3 sm:px-7">
+              <div>
+                <div className="text-blue-600 font-extrabold flex justify-center items-baseline">
+                  <p className=" text-2xl lg:text-3xl">5</p>
+                  <p className=" text-3xl lg:text-4xl">M</p>
+                  <p className=" text-2xl lg:text-4xl">+</p>
+                </div>
+                <p className="text-slate-950 text-center">
+                  Million daily active users
+                </p>
+              </div>
+              <div>
+                <div className="text-blue-600 font-extrabold flex justify-center items-baseline">
+                  <p className=" text-2xl lg:text-3xl">9</p>
+                  <p className=" text-3xl lg:text-4xl">K</p>
+                  <p className=" text-2xl lg:text-4xl">+</p>
+                </div>
+                <p className="text-slate-950 text-center">
+                  Million daily active users
+                </p>
+              </div>
+              <div>
+                <div className="text-blue-600 font-extrabold flex justify-center items-baseline">
+                  <p className=" text-2xl lg:text-3xl">2</p>
+                  <p className=" text-3xl lg:text-4xl">M</p>
+                  <p className=" text-2xl lg:text-4xl">+</p>
+                </div>
+                <p className="text-slate-950 text-center">
+                  Million daily active users
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

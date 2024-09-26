@@ -68,7 +68,10 @@ const Nav = () => {
         </motion.div>
       )}
       <div className=" flex gap-3 sm:gap-10 items-center">
-        <CiSearch size="30px" />
+        <CiSearch
+          size="30px"
+          className={`${isSticky ? "text-black" : "text-white"}`}
+        />
         <div className="flex gap-3">
           <Button
             buttonType="submit"
