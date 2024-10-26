@@ -21,7 +21,7 @@ const Button: React.FC<buttonProps> = ({
       className={` px-3 sm:px-3 py-1 sm:py-2 rounded-lg ${otherStyles}`}
     >
       {!url ? (
-        <span className="flex items-center gap-3 text-lg font-sans">
+        <span className="flex items-center gap-1 font-sans">
           {Icon && <Icon size="18px" />}
           {title}
         </span>

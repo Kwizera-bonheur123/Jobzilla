@@ -9,12 +9,14 @@ import useHandleResize from "../hooks/useHandleResize";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useAppDispatch } from "./redux/hooks/hooks";
+import { manipulateSignupModel } from "./redux/features/OpenModelsSlice";
 const Nav = () => {
-  window.onscroll = () => console.log("Scrolled");
   const { show } = useHandleResize();
   const [showMenu, setShowMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const navbarRef = useRef<HTMLDivElement | null>(null);
+  const dispatch = useAppDispatch();
   const links = [
     { to: "/", label: "Home" },
     { to: "/jobs", label: "Jobs" },
@@ -40,6 +42,7 @@ const Nav = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <motion.div
       initial={{ y: "-100%", opacity: 1 }}
@@ -73,13 +76,17 @@ const Nav = () => {
           className={`${isSticky ? "text-black" : "text-white"}`}
         />
         <div className="flex gap-3">
-          <Button
-            buttonType="submit"
-            url="/"
-            title={`${show ? "Sign up" : ""}`}
-            icon={FaArrowRightToBracket}
-            otherStyles=" hover:bg-blue-200 text-[#1967d2] bg-[#f0f6fe]"
-          />
+          <div
+            className="h-fit"
+            onClick={() => dispatch(manipulateSignupModel())}
+          >
+            <Button
+              buttonType="button"
+              title={`${show ? "Sign up" : ""}`}
+              icon={FaArrowRightToBracket}
+              otherStyles=" hover:bg-blue-200 text-[#1967d2] bg-[#f0f6fe]"
+            />
+          </div>
           <Button
             buttonType="submit"
             url="/"

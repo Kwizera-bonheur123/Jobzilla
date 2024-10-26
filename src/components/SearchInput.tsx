@@ -1,15 +1,11 @@
-import { useState } from "react";
 
-type componetProps = {
-  //   openModel: boolean;
-};
 
-const SearchInput: React.FC<componetProps> = () => {
-  const [items, setItems] = useState([
+const SearchInput = () => {
+  const items = [
     { id: 1, name: "Web developer" },
     { id: 2, name: "Devops" },
     { id: 3, name: "Accountant" },
-  ]);
+  ];
 
   return (
     <div className=" absolute bottom-10 w-[86%] border-2 bg-white p-2 grid gap-2  rounded-md">

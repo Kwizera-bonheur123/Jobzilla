@@ -15,6 +15,7 @@ import w2 from "../assets/w2.png";
 import w5 from "../assets/w5.png";
 import w6 from "../assets/w6.png";
 import SignupCard from "./SignupCard";
+import { useAppSelector } from "./redux/hooks/hooks";
 
 const Home = () => {
   const responsive = {
@@ -68,13 +69,18 @@ const Home = () => {
       slidesToSlide: 2,
     },
   };
-  const [openModel, setOpenModel] = useState<boolean>(false);
+  const { signUpModel } = useAppSelector((state) => state.toggleModels);
   const [activeLink, setActiveLink] = useState("All");
+  const [openModel, setOpenModel] = useState(false);
 
   const links = ["All", "Full-time", "Part time", "Monthly"];
   return (
-    <div className=" bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen">
-      <SignupCard />
+    <div
+      className={` ${
+        signUpModel ? " overflow-hidden" : " overflow-y-auto"
+      }bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen`}
+    >
+      {signUpModel && <SignupCard />}
       <div className="mx-[3%] sm:mx-[8%] md:mx-[10%] pt-[38%] sm:pt-[28%] md:pt-[17%] h-[40%]">
         <h1 className=" text-white text-4xl md:text-6xl font-bold">
           FIND TOP IT JOBS
