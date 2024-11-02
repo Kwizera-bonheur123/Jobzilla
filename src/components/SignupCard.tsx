@@ -27,7 +27,7 @@ const SignupCard: React.FC = () => {
   const onSubmit: SubmitHandler<RegisterSchemaType> = async (
     data: RegisterSchemaType
   ) => {
-    console.log("Submitted", data);
+    
   };
   return (
     <div
