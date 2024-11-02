@@ -78,7 +78,7 @@ const Home = () => {
     <div
       className={` ${
         signUpModel ? " overflow-hidden" : " overflow-y-auto"
-      }bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen`}
+      } bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen`}
     >
       {signUpModel && <SignupCard />}
       <div className="mx-[3%] sm:mx-[8%] md:mx-[10%] pt-[38%] sm:pt-[28%] md:pt-[17%] h-[40%]">
