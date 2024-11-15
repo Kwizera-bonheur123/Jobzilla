@@ -1,12 +1,14 @@
+import { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { Link } from "react-router-dom";
 
 interface buttonProps {
   buttonType: "submit" | "reset" | "button";
   url?: string | null;
-  title: string;
+  title: string | ReactNode;
   otherStyles?: string;
   icon?: IconType;
+  disabled?: boolean;
 }
 const Button: React.FC<buttonProps> = ({
   buttonType,
@@ -14,10 +16,12 @@ const Button: React.FC<buttonProps> = ({
   title,
   otherStyles,
   icon: Icon,
+  disabled = false,
 }) => {
   return (
     <button
       type={buttonType}
+      disabled={disabled}
       className={` px-3 sm:px-3 py-1 sm:py-2 rounded-lg ${otherStyles}`}
     >
       {!url ? (

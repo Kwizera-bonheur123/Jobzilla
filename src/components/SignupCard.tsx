@@ -3,7 +3,7 @@ import { FaUserTie } from "react-icons/fa";
 import Button from "./Button";
 import FormInput from "./Form/InputText";
 import { DynamicData } from "./types/DynamicData";
-import { useAppDispatch } from "./redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
 import { manipulateSignupModel } from "./redux/features/OpenModelsSlice";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -12,12 +12,17 @@ import {
   RegisterSchema,
   RegisterSchemaType,
 } from "../validations/auth/Register.validation";
+import { registra } from "./redux/features/RegisterSlice";
+import useToast from "./redux/hooks/useToast";
+import IconLoader from "./Loaders/iconLoader";
 const SignupCard: React.FC = () => {
+  const { isLoading } = useAppSelector((state) => state.register);
   const handlePropagation = (event: DynamicData) => {
     event?.stopPropagation();
   };
   const dispatch = useAppDispatch();
-  const [candidate, setCandidate] = useState(false);
+  const { showErrorMessage, showSuccessMessage } = useToast();
+  const [candidate, setCandidate] = useState(true);
   const {
     register,
     handleSubmit,
@@ -27,7 +32,19 @@ const SignupCard: React.FC = () => {
   const onSubmit: SubmitHandler<RegisterSchemaType> = async (
     data: RegisterSchemaType
   ) => {
-    
+    try {
+      const roleName = candidate ? "CANDIDATE" : "EMPLOYER";
+      const sentData = { ...data, roleName };
+      const res = await dispatch(registra(sentData)).unwrap();
+      showSuccessMessage(res.data.message || "Successfully!!!");
+    } catch (error) {
+      const err = error as DynamicData;
+      showErrorMessage(
+        err.data.message ||
+          err?.message ||
+          "Unknown error occured! Please try again!"
+      );
+    }
   };
   return (
     <div
@@ -65,7 +82,7 @@ const SignupCard: React.FC = () => {
             />
             <Button
               buttonType="button"
-              title="Candidate"
+              title="Employer"
               icon={FaUserTie}
               otherStyles={`${
                 !candidate
@@ -114,8 +131,20 @@ const SignupCard: React.FC = () => {
             </div>
             <Button
               buttonType="submit"
-              title="Sign Up"
-              otherStyles=" text-white bg-blue-700 w-full h-14 flex justify-center items-center font-semibold mt-5"
+              disabled={isLoading ? true : false}
+              title={
+                isLoading ? (
+                  <>
+                    <IconLoader className="animate-spin mr-1" />{" "}
+                    {"Authenticating...."}
+                  </>
+                ) : (
+                  "Register"
+                )
+              }
+              otherStyles={` ${
+                isLoading ? "bg-blue-400 text-white" : "bg-blue-700 text-white"
+              } ' w-full h-14 flex justify-center items-center font-semibold mt-5'`}
             />
           </form>
         </div>

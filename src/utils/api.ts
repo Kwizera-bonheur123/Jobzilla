@@ -5,9 +5,8 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { toast } from "sonner";
-
 const API: AxiosInstance = axios.create({
-  baseURL: `${import.meta.env.BASE_URL}`,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 50000,
   headers: {},
 });
@@ -38,8 +37,8 @@ API.interceptors.request.use(
 );
 
 API.interceptors.response.use(
-	(response: AxiosResponse) => responseHandler(response),
-	(error: AxiosError) => errorHandler(error),
+  (response: AxiosResponse) => responseHandler(response),
+  (error: AxiosError) => errorHandler(error)
 );
 
 export default API;
