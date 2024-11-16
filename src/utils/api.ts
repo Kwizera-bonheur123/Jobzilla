@@ -24,7 +24,6 @@ const responseHandler = (response: AxiosResponse) => response;
 const errorHandler = (error: AxiosError): Promise<never> => {
   if (error.response?.status === 401) {
     localStorage.clear();
-    window.location.href = "/login";
   } else if (error.message === "Network Error") {
     toast.error("Network Error: Connect to Server");
   }

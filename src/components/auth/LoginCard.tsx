@@ -15,6 +15,7 @@ import {
 import FormInput from "../Form/InputText";
 import Button from "../Button";
 import IconLoader from "../Loaders/iconLoader";
+import { login } from "../redux/features/LoginSlice";
 const LoginCard: React.FC = () => {
   const { isLoading } = useAppSelector((state) => state.register);
   const handlePropagation = (event: DynamicData) => {
@@ -31,9 +32,9 @@ const LoginCard: React.FC = () => {
   const onSubmit: SubmitHandler<LoginSchemaType> = async (
     data: LoginSchemaType
   ) => {
-    console.log(data);
     try {
-      const res = await dispatch(registra(sentData)).unwrap();
+      const res = await dispatch(login(data)).unwrap();
+      localStorage.setItem("access_token", res.data.token);
       showSuccessMessage(res.data.message || "Successfully!!!");
     } catch (error) {
       const err = error as DynamicData;

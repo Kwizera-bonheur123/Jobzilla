@@ -9,7 +9,6 @@ export const registra = createAsyncThunk(
   async (registerData: RegisterSchemaType, { rejectWithValue }) => {
     try {
       const { data } = await API.post("/auth/signup", registerData);
-      console.log(" data are fetched!!!", data);
       return data;
     } catch (error) {
       return rejectWithValue((error as DynamicData).response);
@@ -35,7 +34,6 @@ const registerSlice = createSlice({
     });
     builder.addCase(registra.rejected, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
-      console.log(action.payload.data.message[0]);
       state.error = action.payload?.data?.message;
     });
   },
