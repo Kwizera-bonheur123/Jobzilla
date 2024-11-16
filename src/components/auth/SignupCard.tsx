@@ -1,20 +1,24 @@
 import { IoMdClose } from "react-icons/io";
 import { FaUserTie } from "react-icons/fa";
-import Button from "./Button";
-import FormInput from "./Form/InputText";
-import { DynamicData } from "./types/DynamicData";
-import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
-import { manipulateSignupModel } from "./redux/features/OpenModelsSlice";
+import Button from "../Button";
+import FormInput from "../Form/InputText";
+import { DynamicData } from "../types/DynamicData";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
+import {
+  closeModels,
+  manipulateLoginModel,
+  manipulateSignupModel,
+} from "../redux/features/OpenModelsSlice";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   RegisterSchema,
   RegisterSchemaType,
-} from "../validations/auth/Register.validation";
-import { registra } from "./redux/features/RegisterSlice";
-import useToast from "./redux/hooks/useToast";
-import IconLoader from "./Loaders/iconLoader";
+} from "../../validations/auth/Register.validation";
+import { registra } from "../redux/features/RegisterSlice";
+import useToast from "../redux/hooks/useToast";
+import IconLoader from "../Loaders/iconLoader";
 const SignupCard: React.FC = () => {
   const { isLoading } = useAppSelector((state) => state.register);
   const handlePropagation = (event: DynamicData) => {
@@ -57,7 +61,7 @@ const SignupCard: React.FC = () => {
       >
         <div className=" w-full h-2 bg-blue-700" />
         <IoMdClose
-          onClick={() => dispatch(manipulateSignupModel())}
+          onClick={() => dispatch(closeModels())}
           size="30px"
           className=" absolute right-[31%] cursor-pointer top-3"
         />
@@ -92,7 +96,7 @@ const SignupCard: React.FC = () => {
             />
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className=" mt-8 grid gap-5">
+            <div className=" mt-8 mb-5 grid gap-5">
               <FormInput
                 type="text"
                 placeholder="First name*"
@@ -123,12 +127,7 @@ const SignupCard: React.FC = () => {
                 error={errors.password}
               />
             </div>
-            <div className=" flex gap-3 mt-3">
-              <p>Already registered? </p>
-              <a href="#" className="text-blue-700 font-semibold">
-                Log in here
-              </a>
-            </div>
+
             <Button
               buttonType="submit"
               disabled={isLoading ? true : false}
@@ -146,6 +145,16 @@ const SignupCard: React.FC = () => {
                 isLoading ? "bg-blue-400 text-white" : "bg-blue-700 text-white"
               } ' w-full h-14 flex justify-center items-center font-semibold mt-5'`}
             />
+            <div className=" flex gap-3 mt-3">
+              <p>Already registered? </p>
+              <a
+                onClick={() => dispatch(manipulateLoginModel())}
+                href="#"
+                className="text-blue-700 font-semibold"
+              >
+                Log in here
+              </a>
+            </div>
           </form>
         </div>
       </div>

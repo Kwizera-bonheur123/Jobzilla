@@ -15,12 +15,19 @@ const openModelSlice = createSlice({
   reducers: {
     manipulateSignupModel: (state) => {
       state.signUpModel = !state.signUpModel;
+      state.loginModel = false;
     },
     manipulateLoginModel: (state) => {
       state.loginModel = !state.loginModel;
+      state.signUpModel = false;
+    },
+    closeModels: (state) => {
+      state.loginModel = false;
+      state.signUpModel = false;
     },
   },
 });
 
 export const openModelReducer = openModelSlice.reducer;
-export const {manipulateLoginModel, manipulateSignupModel} = openModelSlice.actions;
+export const { manipulateLoginModel, manipulateSignupModel, closeModels } =
+  openModelSlice.actions;

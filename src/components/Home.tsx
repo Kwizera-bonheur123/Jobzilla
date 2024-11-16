@@ -14,8 +14,10 @@ import w1 from "../assets/w1.png";
 import w2 from "../assets/w2.png";
 import w5 from "../assets/w5.png";
 import w6 from "../assets/w6.png";
-import SignupCard from "./SignupCard";
-import { useAppSelector } from "./redux/hooks/hooks";
+import SignupCard from "./auth/SignupCard";
+import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
+import LoginCard from "./auth/LoginCard";
+import { manipulateSignupModel } from "./redux/features/OpenModelsSlice";
 
 const Home = () => {
   const responsive = {
@@ -69,7 +71,10 @@ const Home = () => {
       slidesToSlide: 2,
     },
   };
-  const { signUpModel } = useAppSelector((state) => state.toggleModels);
+  const { signUpModel, loginModel } = useAppSelector(
+    (state) => state.toggleModels
+  );
+  const dispatch = useAppDispatch();
   const [activeLink, setActiveLink] = useState("All");
   const [openModel, setOpenModel] = useState(false);
 
@@ -81,6 +86,7 @@ const Home = () => {
       } bg-homeBackgroundImage bg-fixed bg-center bg-cover min-h-screen`}
     >
       {signUpModel && <SignupCard />}
+      {loginModel && <LoginCard />}
       <div className="mx-[3%] sm:mx-[8%] md:mx-[10%] pt-[38%] sm:pt-[28%] md:pt-[17%] h-[40%]">
         <h1 className=" text-white text-4xl md:text-6xl font-bold">
           FIND TOP IT JOBS
@@ -93,7 +99,7 @@ const Home = () => {
         <div>
           <label className=" text-gray-400 md:text-sm">WHAT</label>
           <div
-            onClick={() => setOpenModel(!openModel)}
+            onClick={() => dispatch(manipulateSignupModel())}
             className=" flex justify-between font-bold"
           >
             <label className="md:text-sm">Job title</label>
