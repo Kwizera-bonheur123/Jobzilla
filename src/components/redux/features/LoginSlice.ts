@@ -32,7 +32,8 @@ const LoginSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
-      if (action.payload.token) {
+      console.log(action.payload.data.token);
+      if (action.payload.data.token) {
         state.isAuthenticated = true;
       }
     });

@@ -9,8 +9,11 @@ import useHandleResize from "../hooks/useHandleResize";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useAppDispatch } from "./redux/hooks/hooks";
-import { manipulateSignupModel } from "./redux/features/OpenModelsSlice";
+import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
+import {
+  manipulateLoginModel,
+  manipulateSignupModel,
+} from "./redux/features/OpenModelsSlice";
 const Nav = () => {
   const { show } = useHandleResize();
   const [showMenu, setShowMenu] = useState(false);
@@ -25,7 +28,8 @@ const Nav = () => {
     { to: "/dashboard", label: "Dashboard" },
   ];
   const shouldShowMenu = show || showMenu;
-
+  const { isAuthenticated } = useAppSelector((state) => state.login);
+  console.log(isAuthenticated);
   useEffect(() => {
     const handleScroll = () => {
       if (navbarRef.current) {
@@ -75,35 +79,66 @@ const Nav = () => {
           size="30px"
           className={`${isSticky ? "text-black" : "text-white"}`}
         />
-        <div className="flex gap-3">
-          <div
-            className="h-fit"
-            onClick={() => dispatch(manipulateSignupModel())}
-          >
-            <Button
-              buttonType="button"
-              title={`${show ? "Sign up" : ""}`}
-              icon={FaArrowRightToBracket}
-              otherStyles=" hover:bg-blue-200 text-[#1967d2] bg-[#f0f6fe]"
-            />
-          </div>
-          <Button
-            buttonType="submit"
-            url="/"
-            title={`${show ? "Post a job" : ""}`}
-            icon={BiSolidShoppingBag}
-            otherStyles=" hover:bg-blue-500 text-[#f0f6fe] bg-[#17171d]"
-          />
-          {!show && (
+
+        {isAuthenticated ? (
+          <>
             <div
-              className={`${isSticky && " text-blue-800"}`}
-              onClick={() => setShowMenu(!showMenu)}
+              className="h-fit"
+              onClick={() => dispatch(manipulateSignupModel())}
             >
-              <GiHamburgerMenu size="30px" />
+              <Button
+                buttonType="button"
+                title={`${show ? "Dashboard" : ""}`}
+                icon={FaArrowRightToBracket}
+                otherStyles="hover:bg-blue-200 text-[#1967d2] bg-[#f0f6fe]"
+              />
             </div>
-          )}
-        </div>
+            <Button
+              buttonType="submit"
+              url="/"
+              title={`${show ? "Post a job" : ""}`}
+              icon={BiSolidShoppingBag}
+              otherStyles="hover:bg-blue-500 text-[#f0f6fe] bg-[#17171d]"
+            />
+          </>
+        ) : (
+          <div className="flex gap-3">
+            <div
+              className="h-fit"
+              onClick={() => dispatch(manipulateSignupModel())}
+            >
+              <Button
+                buttonType="button"
+                title={`${show ? "Sign up" : ""}`}
+                icon={FaArrowRightToBracket}
+                otherStyles="hover:bg-blue-200 text-[#1967d2] bg-[#f0f6fe]"
+              />
+            </div>
+            <div
+              className="h-fit"
+              onClick={() => dispatch(manipulateLoginModel())}
+            >
+              <Button
+                buttonType="submit"
+                url="/"
+                title={`${show ? "Login" : ""}`}
+                icon={FaArrowRightToBracket}
+                otherStyles="hover:bg-white text-bold text-[#f0f6fe] bg-blue-500"
+              />
+            </div>
+          </div>
+        )}
+
+        {!show && (
+          <div
+            className={`${isSticky && " text-blue-800"}`}
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            <GiHamburgerMenu size="30px" />
+          </div>
+        )}
       </div>
+      {/* </div> */}
     </motion.div>
   );
 };
