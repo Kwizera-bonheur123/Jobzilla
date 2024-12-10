@@ -10,6 +10,7 @@ export default {
       boxShadow: {
         custom: "0px 0px 30px #001A3E",
         boxShadow: "0px 0px 20px #F2F2F2",
+        profileModel: '0px 7px 7px 7px'
       },
       borderRadius: {
         "4xl": "2rem",
