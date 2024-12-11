@@ -1,12 +1,11 @@
 import Logo from '../../assets/logo-dark.png' 
 import { FaHome } from "react-icons/fa";
 import { IoIosPersonAdd } from "react-icons/io"; 
-import { BsFillBagCheckFill } from "react-icons/bs";
 import { IoPeople } from "react-icons/io5";
 import { BiSolidBookmark } from "react-icons/bi";
 import { NavLink } from 'react-router-dom';
 import { Bs0SquareFill } from "react-icons/bs";
-import { FaMessage } from "react-icons/fa6";
+import { FaMessage, FaSuitcase } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { PiSignOutBold } from "react-icons/pi";
@@ -14,7 +13,7 @@ export const DashboardSlidebar = () => {
   const links = [
     {to:'/dashboard', label:'Dashboard', icon:FaHome},
     {to:'/company', label:'Company Profile', icon:IoIosPersonAdd},
-    {to:'/jobs', label:'Jobs', icon:BsFillBagCheckFill},
+    {to:'/jobs', label:'Jobs', icon:FaSuitcase},
     {to:'/cabdidates', label:'Candidates',icon:IoPeople},
     {to:'/bookmark', label:'Bookmark resume', icon:BiSolidBookmark},
     {to:'/packages', label:'Packages', icon:Bs0SquareFill},

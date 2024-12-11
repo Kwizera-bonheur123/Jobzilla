@@ -7,9 +7,11 @@ export const DashboardLayout = () => {
     <>
     <div className='flex'>
     <DashboardSlidebar/>
-    <div className='bg-blue-200/20 w-full'>
+    <div className='bg-[#484848]/5 w-full'>
     <DashboardNavBar />
-    <Outlet/>
+    <div className=' mx-12 mt-10'>
+      <Outlet/>
+    </div>
     </div>
     </div>
     </>
